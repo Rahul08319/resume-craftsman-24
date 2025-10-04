@@ -1,18 +1,26 @@
 import { useState } from "react";
 import { ResumeData } from "@/types/resume";
+import { ColorTheme, ResumeTemplate } from "@/types/theme";
 import { PersonalInfoForm } from "@/components/PersonalInfoForm";
 import { SummaryForm } from "@/components/SummaryForm";
 import { ExperienceForm } from "@/components/ExperienceForm";
 import { EducationForm } from "@/components/EducationForm";
 import { SkillsForm } from "@/components/SkillsForm";
 import { ProjectsForm } from "@/components/ProjectsForm";
-import { ResumePreview } from "@/components/ResumePreview";
+import { ThemeSelector } from "@/components/ThemeSelector";
+import { TemplateSelector } from "@/components/TemplateSelector";
+import { ModernTemplate } from "@/components/templates/ModernTemplate";
+import { ClassicTemplate } from "@/components/templates/ClassicTemplate";
+import { MinimalistTemplate } from "@/components/templates/MinimalistTemplate";
 import { Button } from "@/components/ui/button";
 import { Download, FileText } from "lucide-react";
 import { generatePDF } from "@/utils/pdfGenerator";
 import { toast } from "sonner";
+import { useTheme } from "@/hooks/useTheme";
 
 const Index = () => {
+  const [selectedTheme, setSelectedTheme] = useState<ColorTheme>("professional");
+  const [selectedTemplate, setSelectedTemplate] = useState<ResumeTemplate>("modern");
   const [resumeData, setResumeData] = useState<ResumeData>({
     personalInfo: {
       fullName: "",
@@ -29,6 +37,19 @@ const Index = () => {
     projects: [],
   });
 
+  useTheme(selectedTheme);
+
+  const renderTemplate = () => {
+    switch (selectedTemplate) {
+      case "classic":
+        return <ClassicTemplate data={resumeData} />;
+      case "minimalist":
+        return <MinimalistTemplate data={resumeData} />;
+      default:
+        return <ModernTemplate data={resumeData} />;
+    }
+  };
+
   const handleDownload = () => {
     if (!resumeData.personalInfo.fullName || !resumeData.personalInfo.email) {
       toast.error("Please fill in at least your name and email");
@@ -36,7 +57,7 @@ const Index = () => {
     }
 
     try {
-      generatePDF(resumeData);
+      generatePDF(resumeData, selectedTheme, selectedTemplate);
       toast.success("Resume downloaded successfully!");
     } catch (error) {
       toast.error("Failed to generate PDF");
@@ -67,6 +88,16 @@ const Index = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Form Section */}
           <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <ThemeSelector
+                selectedTheme={selectedTheme}
+                onChange={setSelectedTheme}
+              />
+              <TemplateSelector
+                selectedTemplate={selectedTemplate}
+                onChange={setSelectedTemplate}
+              />
+            </div>
             <PersonalInfoForm
               data={resumeData.personalInfo}
               onChange={(personalInfo) =>
@@ -110,11 +141,11 @@ const Index = () => {
             <div className="mb-4">
               <h2 className="text-xl font-semibold text-foreground mb-2">Live Preview</h2>
               <p className="text-sm text-muted-foreground">
-                Your resume updates in real-time as you type
-              </p>
+              Your resume updates in real-time as you type
+            </p>
             </div>
             <div className="bg-muted/30 rounded-lg p-4 overflow-auto max-h-[calc(100vh-200px)]">
-              <ResumePreview data={resumeData} />
+              {renderTemplate()}
             </div>
           </div>
         </div>

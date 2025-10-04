@@ -1,11 +1,11 @@
 import { ResumeData } from "@/types/resume";
 import { Mail, Phone, MapPin, Linkedin, Globe, Briefcase, GraduationCap, Code, FolderGit } from "lucide-react";
 
-interface ResumePreviewProps {
+interface ModernTemplateProps {
   data: ResumeData;
 }
 
-export const ResumePreview = ({ data }: ResumePreviewProps) => {
+export const ModernTemplate = ({ data }: ModernTemplateProps) => {
   const formatDate = (date: string) => {
     if (!date) return "";
     const [year, month] = date.split("-");
@@ -14,7 +14,6 @@ export const ResumePreview = ({ data }: ResumePreviewProps) => {
 
   return (
     <div className="bg-card shadow-[var(--shadow-elegant)] rounded-lg p-8 min-h-[1000px] max-w-[800px] mx-auto">
-      {/* Header */}
       <div className="border-b-2 border-primary pb-4 mb-6">
         <h1 className="text-4xl font-bold text-primary mb-2">
           {data.personalInfo.fullName || "Your Name"}
@@ -57,17 +56,13 @@ export const ResumePreview = ({ data }: ResumePreviewProps) => {
         )}
       </div>
 
-      {/* Summary */}
       {data.summary && (
         <div className="mb-6">
-          <h2 className="text-xl font-bold text-primary mb-3 flex items-center gap-2">
-            Professional Summary
-          </h2>
+          <h2 className="text-xl font-bold text-primary mb-3">Professional Summary</h2>
           <p className="text-foreground leading-relaxed">{data.summary}</p>
         </div>
       )}
 
-      {/* Experience */}
       {data.experience.length > 0 && (
         <div className="mb-6">
           <h2 className="text-xl font-bold text-primary mb-3 flex items-center gap-2">
@@ -91,7 +86,6 @@ export const ResumePreview = ({ data }: ResumePreviewProps) => {
         </div>
       )}
 
-      {/* Education */}
       {data.education.length > 0 && (
         <div className="mb-6">
           <h2 className="text-xl font-bold text-primary mb-3 flex items-center gap-2">
@@ -112,7 +106,6 @@ export const ResumePreview = ({ data }: ResumePreviewProps) => {
         </div>
       )}
 
-      {/* Skills */}
       {data.skills.length > 0 && (
         <div className="mb-6">
           <h2 className="text-xl font-bold text-primary mb-3 flex items-center gap-2">
@@ -121,10 +114,7 @@ export const ResumePreview = ({ data }: ResumePreviewProps) => {
           </h2>
           <div className="flex flex-wrap gap-2">
             {data.skills.map((skill, index) => (
-              <span
-                key={index}
-                className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
-              >
+              <span key={index} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
                 {skill}
               </span>
             ))}
@@ -132,7 +122,6 @@ export const ResumePreview = ({ data }: ResumePreviewProps) => {
         </div>
       )}
 
-      {/* Projects */}
       {data.projects.length > 0 && (
         <div className="mb-6">
           <h2 className="text-xl font-bold text-primary mb-3 flex items-center gap-2">
