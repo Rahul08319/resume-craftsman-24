@@ -2,32 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
     --background: 210 20% 98%;
-    --foreground: 220 15% 20%;
+    --foreground: 220 15% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 15% 20%;
+    --card-foreground: 220 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 20%;
+    --popover-foreground: 220 15% 15%;
 
-    --primary: 220 85% 45%;
+    --primary: 212 100% 45%; /* Apple Cupertino Blue */
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 220 85% 65%;
+    --primary-glow: 212 100% 65%;
 
-    --secondary: 220 15% 92%;
-    --secondary-foreground: 220 15% 20%;
+    --secondary: 220 14% 94%;
+    --secondary-foreground: 220 15% 15%;
 
-    --muted: 220 15% 95%;
-    --muted-foreground: 220 10% 50%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 200 95% 50%;
+    --accent: 199 89% 48%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -35,70 +31,49 @@ All colors MUST be HSL.
 
     --border: 220 15% 88%;
     --input: 220 15% 90%;
-    --ring: 220 85% 45%;
+    --ring: 212 100% 45%;
 
-    --radius: 0.75rem;
+    --radius: 0.85rem;
     
-    --gradient-primary: linear-gradient(135deg, hsl(220 85% 45%), hsl(220 85% 60%));
-    --gradient-subtle: linear-gradient(180deg, hsl(210 20% 98%), hsl(220 15% 96%));
-    --shadow-card: 0 4px 20px -4px hsl(220 85% 45% / 0.1);
-    --shadow-elegant: 0 10px 40px -10px hsl(220 85% 45% / 0.15);
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --gradient-primary: linear-gradient(135deg, hsl(212 100% 45%), hsl(212 100% 55%));
+    --gradient-subtle: linear-gradient(180deg, hsl(210 20% 98%), hsl(220 15% 95%));
+    --shadow-card: 0 2px 8px -2px rgba(0, 0, 0, 0.05), 0 4px 16px -4px rgba(0, 0, 0, 0.08);
+    --shadow-elegant: 0 10px 30px -10px rgba(0, 0, 0, 0.12), 0 20px 40px -15px rgba(0, 0, 0, 0.07);
+    --transition-spring: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .dark {
-    --background: 220 20% 12%;
-    --foreground: 210 20% 95%;
+    --background: 224 71% 4%;
+    --foreground: 210 20% 98%;
 
-    --card: 220 20% 15%;
-    --card-foreground: 210 20% 95%;
+    --card: 224 71% 7%;
+    --card-foreground: 210 20% 98%;
 
-    --popover: 220 20% 15%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 224 71% 7%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: 220 85% 55%;
+    --primary: 212 100% 50%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 220 85% 70%;
+    --primary-glow: 212 100% 70%;
 
-    --secondary: 220 15% 20%;
-    --secondary-foreground: 210 20% 95%;
+    --secondary: 220 20% 14%;
+    --secondary-foreground: 210 20% 98%;
 
-    --muted: 220 15% 18%;
+    --muted: 220 20% 12%;
     --muted-foreground: 220 10% 65%;
 
-    --accent: 200 95% 50%;
+    --accent: 199 89% 48%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 22%;
-    --input: 220 15% 20%;
-    --ring: 220 85% 55%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 220 20% 18%;
+    --input: 220 20% 16%;
+    --ring: 212 100% 50%;
+    
+    --shadow-card: 0 2px 10px -2px rgba(0, 0, 0, 0.4), 0 6px 20px -4px rgba(0, 0, 0, 0.35);
+    --shadow-elegant: 0 12px 35px -10px rgba(0, 0, 0, 0.5), 0 24px 50px -15px rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -108,6 +83,68 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Apple Liquid Glass chrome utility */
+.apple-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.dark .apple-glass {
+  background: rgba(18, 20, 26, 0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Apple Specular Highlight */
+.specular-border {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dark .specular-border {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Print Stylesheet for flawless A4 resume export */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  header,
+  footer,
+  .print\\:hidden,
+  .no-print,
+  #form-section,
+  button {
+    display: none !important;
+  }
+
+  #preview-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .bg-card {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 12mm;
   }
 }

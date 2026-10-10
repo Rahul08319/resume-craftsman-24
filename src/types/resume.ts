@@ -1,10 +1,12 @@
 export interface PersonalInfo {
   fullName: string;
+  title?: string;
   email: string;
   phone: string;
   location: string;
   linkedin?: string;
   website?: string;
+  github?: string;
 }
 
 export interface WorkExperience {

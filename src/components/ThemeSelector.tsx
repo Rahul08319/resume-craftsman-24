@@ -1,7 +1,6 @@
-import { ColorTheme, themeNames } from "@/types/theme";
+import { ColorTheme, themeNames, themeColors } from "@/types/theme";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Palette } from "lucide-react";
+import { Palette, Sparkles } from "lucide-react";
 
 interface ThemeSelectorProps {
   selectedTheme: ColorTheme;
@@ -9,43 +8,68 @@ interface ThemeSelectorProps {
 }
 
 export const ThemeSelector = ({ selectedTheme, onChange }: ThemeSelectorProps) => {
-  const themes: ColorTheme[] = ["professional", "fresh", "creative", "warm"];
+  // Apple curated theme options
+  const themes: ColorTheme[] = [
+    "cupertino",
+    "midnight",
+    "alpine",
+    "sunset",
+    "violet",
+    "titanium",
+  ];
 
-  const themeColors: Record<ColorTheme, string> = {
-    professional: "bg-[#114ED8]",
-    fresh: "bg-[#16A34A]",
-    creative: "bg-[#9333EA]",
-    warm: "bg-[#F97316]",
+  const themeDisplayColors: Record<ColorTheme, string> = {
+    cupertino: "bg-[#0071e3]",
+    midnight: "bg-[#1f2024]",
+    alpine: "bg-[#28a745]",
+    sunset: "bg-[#f56300]",
+    violet: "bg-[#af52de]",
+    titanium: "bg-[#70757d]",
+    professional: "bg-[#0071e3]",
+    fresh: "bg-[#28a745]",
+    creative: "bg-[#af52de]",
+    warm: "bg-[#f56300]",
   };
 
   return (
-    <Card className="shadow-[var(--shadow-card)] border-border">
-      <CardHeader>
-        <CardTitle className="text-primary flex items-center gap-2">
-          <Palette className="h-5 w-5" />
-          Color Theme
-        </CardTitle>
+    <Card className="shadow-[var(--shadow-card)] border-border/60 rounded-2xl bg-card">
+      <CardHeader className="pb-3 pt-4 px-4 sm:px-6">
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-sm font-bold text-foreground flex items-center gap-2">
+            <Palette className="h-4 w-4 text-primary" />
+            Apple System Color
+          </CardTitle>
+          <span className="text-[11px] font-medium text-muted-foreground">
+            {themeNames[selectedTheme] || "Cupertino Blue"}
+          </span>
+        </div>
       </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-2 gap-3">
-          {themes.map((theme) => (
-            <button
-              key={theme}
-              onClick={() => onChange(theme)}
-              className={`p-3 rounded-lg border-2 transition-all hover:scale-105 ${
-                selectedTheme === theme
-                  ? "border-primary shadow-[var(--shadow-card)]"
-                  : "border-border hover:border-primary/50"
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <div className={`w-6 h-6 rounded-full ${themeColors[theme]}`} />
-                <Label className="cursor-pointer text-sm font-medium">
-                  {themeNames[theme]}
-                </Label>
-              </div>
-            </button>
-          ))}
+      <CardContent className="px-4 sm:px-6 pb-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          {themes.map((theme) => {
+            const isSelected = selectedTheme === theme;
+            return (
+              <button
+                key={theme}
+                type="button"
+                onClick={() => onChange(theme)}
+                className={`flex items-center gap-2 p-2.5 rounded-xl border text-left transition-all duration-200 active:scale-[0.98] ${
+                  isSelected
+                    ? "border-primary bg-primary/5 shadow-sm ring-1 ring-primary/30"
+                    : "border-border/60 hover:border-primary/40 hover:bg-secondary/40"
+                }`}
+              >
+                <div
+                  className={`w-4 h-4 rounded-full flex-shrink-0 shadow-sm ${themeDisplayColors[theme]}`}
+                />
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold text-foreground truncate">
+                    {themeNames[theme]}
+                  </p>
+                </div>
+              </button>
+            );
+          })}
         </div>
       </CardContent>
     </Card>
